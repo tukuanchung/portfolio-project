@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="en">
-
   <head>
     {% load staticfiles %}
     <meta charset="utf-8">
@@ -9,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Kuanchung-Tu</title>
+
+    <title>KC's Blog</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -33,7 +33,7 @@
               <a class="nav-link" href="{% static '策略一.numbers' %}">Resume</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
@@ -44,40 +44,19 @@
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Hi, I'm Jeff Tu.</h1>
-          <p class="lead text-muted">Hey, I'm a software engineer. I struggle for studing django2 framwork. Try to level up my skills and get a better job.</p>
-          <p>
-            <a href="mailto:tukuanchung@gmail.com" class="btn btn-primary my-2">Email me</a>
-            <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
-          </p>
-          <img src="{% static 'tukuanchung.jpg' %}" />
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-
-          <div class="row">
-            {% for job in jobs.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{{ job.image.url }}">
-                <div class="card-body">
-                  <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div> <!-- end row -->
-
-
-        </div> <!-- end container -->
-      </div> <!-- end elbum -->
-
+        <h1 class="text-center p-3">Welcom to KC's Blog</h1>
+        <br>
+        <br>
+        <h2>Latest Posts</h2>
+        <hr>
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"<h3> {{ blog.title }} </h3>
+        <img class="img-fluid" src="{{ blog.images.url }}"/><br>
+        <p>{{ blog.summary }}</p>
+        <p>{{ blog.pub_date_pretty }}</p>
+        {% endfor %}
+      </div>
     </main>
 
     <footer class="text-muted">
